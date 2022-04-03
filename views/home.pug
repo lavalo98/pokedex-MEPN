@@ -1,0 +1,29 @@
+head
+    link(rel='stylesheet' type='text/css' href='css/home.css')        
+    title= "MEPN Pokedex"
+body
+    #loader.center
+    h1 Welcome to the pokedex
+    a(href='prev') Prev
+    a(href='next') Next
+    .grid
+        for pokemon, i in pokemonList 
+            div
+                h3= "#" + pokemon.id
+                img.img(src= pokemon.sprites.front_default)
+                h2.capitalize= pokemon.name
+                for elem in pokemon.types
+                    p(class=`capitalize type ${elem.type.name}`)= elem.type.name
+
+    script.
+        document.onreadystatechange = function() {
+            if (document.readyState !== "complete") {
+                document.querySelector("body").style.visibility = "hidden";
+                document.querySelector("#loader").style.visibility = "visible";
+            } else {
+                document.querySelector("#loader").style.display = "none";
+                document.querySelector("body").style.visibility = "visible";
+            }
+        };
+        
+    
